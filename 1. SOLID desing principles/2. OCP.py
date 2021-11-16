@@ -43,6 +43,7 @@ class ProductFilter:
 
 class Specification:
     """
+    (its base class)
     Specification - class which determines whether or not particular item satisfies a particular criteria
     """
 
@@ -61,6 +62,7 @@ class Filter:
     """
 
     def filter(self, items, spec):
+        # in filter method we pass items list and specification we want to filter by
         pass
 
 
@@ -112,6 +114,8 @@ class AndSpecification(Specification):
 
 
 class BetterFilter(Filter):
+    # Note that we do not implement logic directly in Filter class cause in future if we want to change the filtering
+    # logic we will just inherit from Filter class and implement in new created class new logic
     def filter(self, items, spec):
         for item in items:
             if spec.is_satisfied(item):
@@ -147,6 +151,7 @@ if __name__ == '__main__':
     # large_blue = AndSpecification(large, ColorSpecification(Color.BLUE))
     # we may want not to use AndSpec and it seems a bit long so we can override '&' sing to write:
 
-    large_blue = large & ColorSpecification(Color.BLUE)
+    # large_blue = large & ColorSpecification(Color.BLUE)
+    large_blue = SizeSpecification(Size.LARGE) & ColorSpecification(Color.BLUE)
     for p in bf.filter(products, large_blue):
         print(f' - {p.name} is large AND blue')
