@@ -23,11 +23,20 @@ class Person:
 
 
 class PersonBuilder:
-    """Base class builder"""
+    """Base class builder
+
+    This builder violates OCP cause whenver we need to add one more builder we have to change this class
+    """
+
+    # this will not work cause:
+    #  Python's default arguments are actually static. Surprise!
+    # def __init__(self, person=Person()):
+    #   self.person = person
 
     def __init__(self, person=None):
-        # def __init__(self, person=Person()):
-        # self.person = person
+        """ This Init allows to work with objects that are already constructed reather creating new person whenever
+        we want to customize something"""
+
         if person is None:
             self.person = Person()
         else:
@@ -42,13 +51,15 @@ class PersonBuilder:
         return PersonAddressBuilder(self.person)
 
     def build(self):
+        # expose person when we are done building
         return self.person
 
 
 class PersonJobBuilder(PersonBuilder):
     """Subclass for Job builder"""
 
-    def __init__(self, person):  # We don't want to create person as we did in base builder
+    def __init__(self, person):  # We don't want to create a default instance of person here.
+        # Cause it will be done in PersonBuilder
         super().__init__(person)
 
     def at(self, company_name):
@@ -100,6 +111,7 @@ if __name__ == '__main__':
         .earning(123000) \
         .build()
     print(person)
+    print(pb)
     print('---------------')
     person2 = PersonBuilder().build()
     print(person2)

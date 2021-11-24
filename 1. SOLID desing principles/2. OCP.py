@@ -41,6 +41,8 @@ class ProductFilter:
 # as adding such functions violates OCP. We need to remake it and extend them
 # Enterprise patterns. One of those called Specification. And that's what we need to implement here
 
+# Specification pattern from Enterprise patterns :
+
 class Specification:
     """
     (its base class)

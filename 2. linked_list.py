@@ -96,6 +96,8 @@ class LinkedList:
             yield node
             node = node.next_node
 
+    def __str__(self):
+        return "Linked list"
 
 def reverse(data_set):
     # 4234

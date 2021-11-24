@@ -1,4 +1,6 @@
 """
+Purpose of the interface: we define list of methods that child Class have to implement
+
 Interface Segregation
 The idea is. Do not stick to many methods into an interface
 
@@ -75,13 +77,13 @@ So the implementation is the following
 """
 
 
-class Printer:
+class Printer:  # it's interface
     @abstractmethod
     def print(self, document):
         pass
 
 
-class Scanner:
+class Scanner:  # it's interface
     @abstractmethod
     def scan(self, document):
         pass

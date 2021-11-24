@@ -30,7 +30,7 @@ class RelationshipsBrowser:
     THIS IS HOW YOU IMPLEMENT a RelationshipsBrowser
 
     So for testing you can use some other class "fake browser" that will not go to real DB as Relationships may do
-        fake browser will just return mocked data or some info from in memory storage
+        fake browser will just return mocked data or some info from in-memory storage
     """
 
     @abstractmethod
