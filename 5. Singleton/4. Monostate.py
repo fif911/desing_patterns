@@ -3,7 +3,7 @@ This implementation stands apart from canonical implementation - mono state impl
 We put all the state of the object into a static variable. But at the same time you allow people to create
 new objects thereby(тем самым) making new instances which all access the same things
 
-But this is mot recommended approach. The better to use decorator or a class
+But this is not recommended approach. The better to use decorator or a class
 """
 
 
@@ -20,6 +20,8 @@ class CEO:
     def __init__(self):
         """
         When somebody will want to construct new CEO he always will be getting the same object
+
+        KEY POINT: We are not copying data. We are copying reference. So when reference changes - every CEO changes
         """
         self.__dict__ = self.__shared_state  # assign the set of attributes to the shared state
 

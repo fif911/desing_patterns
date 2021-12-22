@@ -86,6 +86,8 @@ class SingletonTests(unittest.TestCase):
         self.assertEqual(db1, db2)
 
     def test_singleton_total_population(self):
+        """The huge problem about this approach we are testing on live data
+        So we are depending on the DB instance """
         rf = SingletonRecordFinder()
         names = ['Seoul', 'Mexico City']
         tp = rf.total_population(names)

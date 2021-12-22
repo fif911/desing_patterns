@@ -1,7 +1,11 @@
+from datetime import date
+
+
 class Student:
+    #  NOTE ! Class variable is  shared between all instances of the class.
     default_value = 0
 
-    @staticmethod  # it's static method by default (in class object)
+    @staticmethod  # it's static method by default (in class "object")
     def __new__(cls):
         print("__new__")
         # super.__new__(cls) # TypeError: super.__new__(Student): Student is not a subtype of super Не получится
@@ -12,6 +16,7 @@ class Student:
         self.instance_method()
 
     def instance_method(self):
+        self.default_value  # noqa
         print('instance_method success!')
 
     @staticmethod
@@ -22,9 +27,6 @@ class Student:
     def instance_class_method(cls):
         cls.default_value = 1
         print('instance_class_method success!')
-
-
-from datetime import date
 
 
 class Person:
@@ -41,6 +43,9 @@ class Person:
     @staticmethod
     def isAdult(age):
         return age > 18
+
+    def __secret_name(self):
+        return f"secret_name: {self.name} Toby Clark"
 
 
 if __name__ == '__main__':
@@ -65,10 +70,12 @@ if __name__ == '__main__':
     person1 = Person('mayank', 21)
     person2 = Person.fromBirthYear('mayank', 1996)  # class method. Factory for Person
 
+    # print(person1.__secret_name()) # AttributeError: 'Person' object has no attribute '__secret_name'
     print(person1.age)
     print(person2.age)
 
     # print the result
     print(Person.isAdult(22))  # static method. Just like utility
+
 
     # print(type(type(studentObj)))

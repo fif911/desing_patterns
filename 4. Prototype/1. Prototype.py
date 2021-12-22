@@ -42,26 +42,39 @@ class Person:
 
 # also we can try doing it this way BUT when changing address as it still the same object it will change in 2 objects
 
-# address = Address('123 Road', 'London', 'UK')
-# john = Person('John', address)
-# jane = Person('Jane', address)
-# jane.address.street_address = "123B Road"
-# print(john)
-# print(jane)
+address = Address('123 Road', 'London', 'UK')
+john = Person('John', address)
+jane = Person('Jane', address)
+jane.address.street_address = "123B Road"
+print(john, " : ", hex(id(john.address)))  # 123B Road
+print(jane, " : ", hex(id(john.address)))  # 123B Road
+# AND THIS IS HAPPENS CAUSE Person object keeps the refference to the Adress. So when we
+# jane.address.street_address = "123B Road" modifying adress object. We modify the source so for john it also
+# changes
 
 # John lives at 123B Road, London, UK
 # Jane lives at 123B Road, London, UK
 # AND this is happening cause both objects are refer to the same address object (keep reference)
 # and when reference is modified it modifies everywhere
+print("-----")
 
 # and this should be done using deep copy.
 # It's performs a recursive copy of all of the attributes of an object
 john = Person('John', Address('123 Road', 'London', 'UK'))
+print(hex(id(john.address)))  # 0x2a908939fd0
 jane = copy.deepcopy(john)  # now it's separate object not in any way referring to john
+print(hex(id(jane.address)))  # 0x2a908939a60
+
 # jane = copy.copy(john)  # Shallow copy so any obj that is reference just gets copied as a reference
 # so jane refers to the same address as John
 # will change name correctly and address for both
 jane.name = 'Jane'
 jane.address.street_address = '123B Road'
-print(john)
-print(jane)
+print(john, jane, sep="\n")
+# print(jane)
+
+a = 1
+print(hex(id(a)))  # 0x21c32be6930
+a += 1
+print(hex(id(a)))  # 0x21c32be6950 Потому что после операции += у нас создался совершенно новый инт.
+# ВСЁ ПОТОМУ ЧТО int - immutable

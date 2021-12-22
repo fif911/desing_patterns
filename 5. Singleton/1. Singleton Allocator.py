@@ -11,6 +11,10 @@ for things like caching, for example.
 __init__ is where you initialize the object that has been constructed already. If this object doesn't have a
 user-defined __new__, it is assumed that a new instance has been created and is available for you to customize.
 __init__ is equivalent to the constructor in other programming languages.
+
+Takeaway: you will get the same instance in the result so db1==db2 BUT __init__ will be called twice
+and that's typically now that we want
+and that's cause __init__ is called immediately after __new__ doesnt matter what happens in __new__
 """
 import random
 
@@ -19,14 +23,6 @@ class Database:
     initialized = False
     _instance = None
 
-    def __init__(self):
-        self.id = random.randint(1,101)
-        print('Generated an id of ', self.id)
-        # id = random.randint(1, 101)
-        # print('id =', id)
-        # print("Loading a db from file")
-        pass
-
     def __new__(cls, *args, **kwargs):
         """Define or redefine an allocator"""
         if not cls._instance:
@@ -34,6 +30,14 @@ class Database:
             #  call to the base class constructor
             cls._instance = super(Database, cls).__new__(cls, *args, **kwargs)
         return cls._instance
+
+    def __init__(self):
+        self.id = random.randint(1,101)
+        print('Generated an id of ', self.id)
+        # id = random.randint(1, 101)
+        # print('id =', id)
+        # print("Loading a db from file")
+        pass
 
 
 database = Database()

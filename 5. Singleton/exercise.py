@@ -2,11 +2,11 @@ from unittest import TestCase, main
 from copy import deepcopy
 
 
-
 def is_singleton(factory):
     # todo: call factory() and return true or false
     # depending on whether the factory makes a
     # singleton or not
+
     x = factory()
     y = factory()
     return x is y
