@@ -1,0 +1,10 @@
+Command
+An object which represents an instruction to perform a particular action.
+Contains all the information necessary for the action to be taken
+YOU SHALL NOT PASS
+
+sometimes you want to make a not of every action that was made in the system
+or maybe undo the operation
+
+We want an Object that represents an operation. Record that this operation took place
+and maybe use that recording to subsequently move it back
