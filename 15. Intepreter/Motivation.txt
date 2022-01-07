@@ -1,0 +1,12 @@
+Interpreters are all around us. Even now, even in this very room
+
+Interpreter - A component that processes structured text data. And does it by 2 stage process:
+1. Lexing - turning code into separate lexical tokens
+2. Parsing - interpreting sequences of tokens into object oriented structures
+
+Interpreter DP is all about textual input mainly
+You type code and somebody has to compile it
+
+so we have this need of processing textual input. E.g. turning text into
+object oriented structures
+Compiler theory pretty complex topic

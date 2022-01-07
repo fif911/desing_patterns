@@ -1,0 +1,20 @@
+Queue - great thing built in in Python
+
+from queue import Queue
+
+queue.put((download_dir, link))
+queue.get()
+queue.task_done()
+queue.join()
+
+Tread - sharing memory with other treads
+from threading import Thread
+
+class DownloadWorker(Thread):
+    def __init__(self, queue: Queue):
+        Thread.__init__(self)
+        self.queue = queue  # shared object between Threads in memory
+
+    def run(self):
+        # do job
+        pass

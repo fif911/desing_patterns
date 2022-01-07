@@ -1,15 +1,37 @@
 from datetime import date
 
 
-class Student:
+class Boy:
+    def __new__(cls, ):
+        print(f"Boy __new__ {cls}")
+        # return object.__new__(cls)
+        # return super(Boy, cls).__new__(cls)  # if super(Student, cls).__new__(Gamer, *args, **kwargs)
+        return super().__new__(cls)  # if super(Student, cls).__new__(Gamer, *args, **kwargs)
+        # than   TypeError: super(type, obj): obj must be an instance or subtype of type
+
+
+class Gamer:
+    def __new__(cls, ):
+        print(f"Gamer __new__ {cls}")
+        # return object.__new__(cls)
+        return super().__new__(cls)
+
+
+class Student(Boy, Gamer):
     #  NOTE ! Class variable is  shared between all instances of the class.
     default_value = 0
 
     @staticmethod  # it's static method by default (in class "object")
-    def __new__(cls):
-        print("__new__")
-        # super.__new__(cls) # TypeError: super.__new__(Student): Student is not a subtype of super Не получится
-        return object.__new__(cls)
+    def __new__(cls, ):
+        print(f"Student __new__ {cls}")
+        # return super(Student, cls).__new__(Gamer, *args,
+        #                                    **kwargs)  # AttributeError: 'Gamer' object has no attribute 'instance_method'
+        # return super(Gamer,cls).__new__(Gamer, *args, **kwargs) # AttributeError: 'Gamer' object has no attribute 'instance_method'
+        # return super(Gamer, cls).__new__(cls, *args,
+        #                                    **kwargs)  # AttributeError: 'Gamer' object has no attribute 'instance_method'
+
+        # return super().__new__(cls)
+        return super().__new__(Boy)
 
     def __init__(self):
         print("__init__")
@@ -54,6 +76,9 @@ if __name__ == '__main__':
     Student.instance_class_method()
 
     studentObj = Student()
+    if isinstance(studentObj, Boy) or isinstance(studentObj, Gamer):
+        print(f"studentObj type is {type(studentObj)}")
+        exit(0)
     studentObj.instance_method()
 
     print(f'studentObj.default_value in studentObj now: {studentObj.default_value}')  # ВААААУУУ. Выведется 1
@@ -76,6 +101,5 @@ if __name__ == '__main__':
 
     # print the result
     print(Person.isAdult(22))  # static method. Just like utility
-
 
     # print(type(type(studentObj)))
