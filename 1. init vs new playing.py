@@ -30,8 +30,8 @@ class Student(Boy, Gamer):
         # return super(Gamer, cls).__new__(cls, *args,
         #                                    **kwargs)  # AttributeError: 'Gamer' object has no attribute 'instance_method'
 
-        # return super().__new__(cls)
-        return super().__new__(Boy)
+        return super().__new__(cls)
+        # return super().__new__(Boy)
 
     def __init__(self):
         print("__init__")
@@ -69,6 +69,10 @@ class Person:
     def __secret_name(self):
         return f"secret_name: {self.name} Toby Clark"
 
+    def __add__(self, other):
+        return Person(self.name + other.name,
+                      self.age + other.age)
+
 
 if __name__ == '__main__':
     Student.instance_static_method()
@@ -78,7 +82,7 @@ if __name__ == '__main__':
     studentObj = Student()
     if isinstance(studentObj, Boy) or isinstance(studentObj, Gamer):
         print(f"studentObj type is {type(studentObj)}")
-        exit(0)
+        # exit(0)
     studentObj.instance_method()
 
     print(f'studentObj.default_value in studentObj now: {studentObj.default_value}')  # ВААААУУУ. Выведется 1
@@ -92,8 +96,8 @@ if __name__ == '__main__':
      - We generally use static methods to create utility functions.
     """
 
-    person1 = Person('mayank', 21)
-    person2 = Person.fromBirthYear('mayank', 1996)  # class method. Factory for Person
+    person1 = Person('person1 ', 21)
+    person2 = Person.fromBirthYear('person2', 1996)  # class method. Factory for Person
 
     # print(person1.__secret_name()) # AttributeError: 'Person' object has no attribute '__secret_name'
     print(person1.age)
@@ -102,4 +106,9 @@ if __name__ == '__main__':
     # print the result
     print(Person.isAdult(22))  # static method. Just like utility
 
+    person3 = person1 + person2
+    print(f"person3 = {person3}")
+    print(person3.name)
+    print(person3.age)
+    person3
     # print(type(type(studentObj)))
