@@ -1,0 +1,3 @@
+# in site-packages/*pth every line that start with "import " will we executed with "eval line"
+# so go in site-packages/ and create first.pth file
+# put there import first_to_run_code

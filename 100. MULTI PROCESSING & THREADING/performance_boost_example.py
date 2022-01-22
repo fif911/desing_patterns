@@ -1,6 +1,8 @@
 import time
+import tracemalloc
 
 # We'll determine the factorial for these numbers
+
 NUMBERS = 50000, 50001, 50002, 50003, 50004, 50005, 50006, 50007  # to demonstrate the performance boots
 
 
@@ -40,7 +42,8 @@ if __name__ == '__main__':
     print('Execution took {:.4f}'.format(t1 - t0))
 
     # With multiprocessing.Pool()
-
+    tracemalloc.start()
+    start_time = time.time()
     import multiprocessing as mp
 
     t0 = time.time()
@@ -48,3 +51,8 @@ if __name__ == '__main__':
         result_mp = pool.map(factorial, NUMBERS)
     t1 = time.time()
     print('Execution took {:.4f}'.format(t1 - t0))
+    # Check memory usage
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"Current memory usage {current/1e6}MB; Peak: {peak/1e6}MB")
+    print(f'Time elapsed: {time.time()-start_time:.2f}s')
+    tracemalloc.stop()
