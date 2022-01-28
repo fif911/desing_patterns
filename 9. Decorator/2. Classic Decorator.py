@@ -1,6 +1,8 @@
 """
 THe most classic decorator implementation is when u build a class that kind of augments the
-functionality of the existing class
+functionality of the existing class.
+
+And we are able to add functionality to a class IN RUNTIME !!!!
 """
 from abc import ABC
 
