@@ -81,4 +81,4 @@ print(g(5))
 add_part = partial(add, c=2, b=1)
 # Calling partial function
 print(add_part(3))
-KeyboardInterrupt
+# KeyboardInterrupt

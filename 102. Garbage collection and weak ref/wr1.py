@@ -1,4 +1,7 @@
-"""OUTPUT:
+"""
+https://www.youtube.com/watch?v=Z3r6JEnRGvE
+
+OUTPUT:
 [{'__name__': '__main__',... 'Person': <class '__main__.Person'>, 'p1': <__main__.Person object at 0x00000198CF220FD0>}]
 Dead name1 # on program end
 """

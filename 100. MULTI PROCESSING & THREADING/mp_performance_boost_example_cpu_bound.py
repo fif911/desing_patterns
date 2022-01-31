@@ -1,3 +1,8 @@
+"""
+for multiprocessing in case of CPU bound task
+https://www.youtube.com/watch?v=4EBs1BDvuzk&t=386s
+"""
+
 import time
 import tracemalloc
 

@@ -5,6 +5,8 @@ With super we allow mro to decide the sequence in which we want to methods of pa
 
 The Method Resolution Order (MRO) is the set of rules that construct the linearization.
 In the Python literature, the idiom "the MRO of C" is also used as a synonymous for the linearization of the class C.
+
+https://www.youtube.com/watch?v=zS0HyfN7Pm4&t=458s
 """
 
 

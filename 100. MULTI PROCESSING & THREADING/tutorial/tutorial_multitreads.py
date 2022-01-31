@@ -47,6 +47,8 @@ class DownloadWorker(Thread):
         self.queue = queue  # shared object between Threads in memory
 
     def run(self):
+        logger.info(f'module name: {__name__} parent process: {os.getppid()} process id: {os.getpid()}')
+        # name = __main__; parent process: 14504 is SAME; process id: 15436 is SAME
         while True:
             # Get the work from the queue and expand the tuple
             directory, link = self.queue.get()
@@ -77,6 +79,7 @@ def main():
     for link in links:
         logger.info('Queueing {}'.format(link))
         queue.put((download_dir, link))
+
     # Causes the main thread to wait for the queue to finish processing all the tasks
     queue.join()  # Blocks until all items in the Queue have been gotten and processed.
     logging.info('Took %s', time() - ts)
