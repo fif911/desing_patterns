@@ -9,8 +9,8 @@ from pympler import asizeof, tracker, classtracker
 
 
 class User:
-    def __init__(self, name):
-        self.name = name  # full name of the person
+    def __init__(self, fullname):
+        self.fullname = fullname  # full name of the person
         # josh doe josh smith, mary smith
         # so putting this values in same string not the best idea
 
@@ -27,7 +27,7 @@ class User2:
                 return self.strings.index(s)
             else:
                 self.strings.append(s)
-                return len(self.strings) - 1
+                return len(self.strings) - 1  # return the index of latest added element
 
         self.names = [get_or_add(x)
                       for x in fullname.split()]
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     tr.create_snapshot()
     users = []
 
-    number = 5*10000
+    number = 5 * 10000
     first_names = [random_string() for x in range(number)]
     last_names = [random_string() for x in range(number)]
 
@@ -68,9 +68,9 @@ if __name__ == '__main__':
 
     u2 = User2('Jim Jones')
     u3 = User2('Frank Jones')
-    print(u2.names)
-    print(u3.names)
-    print(User2.strings)
+    print(u2.names)  # [0, 1]
+    print(u3.names)  # [2, 1]
+    print(User2.strings)  # ['Jim', 'Jones', 'Frank']
 
     users2 = []
 
@@ -79,6 +79,7 @@ if __name__ == '__main__':
         users2.append(User2(f'{first} {last}'))
     print(f"Second loop took us: {time.time() - start}")
     print(f"Size of list in b: {asizeof.asizeof(users2)}")
+    print(f"Size of strings container in b: {asizeof.asizeof(User2.strings)}")
     tr.create_snapshot()
 
     print(f"len(User2.strings): {len(User2.strings)}")

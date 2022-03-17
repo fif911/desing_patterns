@@ -117,5 +117,5 @@ if __name__ == '__main__':
     print(f"After impossible withdraw: {ba}")
     illegal_command.undo()  # This will deposit a 1000$ !
     print(f"After undo impossible withdraw: {ba}")
-    # and it tells us one thing - we need to track whether or not a perticular operation has in fact succeed
+    # and it tells us one thing - we need to track whether or not a particular operation has in fact succeed
     # add success flag

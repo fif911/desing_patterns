@@ -1,6 +1,7 @@
 """The idea is:
 whenever we operate on objects, we separate all of the invocations(вызов) into two different concepts
-which are called query and command
+which are called
+Query and Command
 
 so Command is something that you send when you're asking for an action change (please set attack value to 2)
 

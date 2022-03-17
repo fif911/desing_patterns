@@ -1,5 +1,5 @@
 """
-in 2. Builder Facets we directly violeted OCP as to add a new builder we need to edit the Base buidler
+in 2. Builder Facets we directly violate OCP as to add a new builder we need to edit the Base builder
 And there is an alternative way to use inheritance
 When you want to build up the additional information you inherit from a builder that you already got
 """

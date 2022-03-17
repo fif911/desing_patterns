@@ -35,5 +35,5 @@ class Sentence:
 if __name__ == '__main__':
     sentence = Sentence('hello world')
     sentence[1].capitalize = True
-    sentence[1].capitalize = True
+    # sentence[1].capitalize = True
     print(sentence)

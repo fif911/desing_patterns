@@ -25,7 +25,7 @@ class Person:
 class PersonBuilder:
     """Base class builder
 
-    This builder violates OCP cause whenver we need to add one more builder we have to change this class
+    Note: This builder violates OCP cause whenever we need to add one more builder we have to change this class
     """
 
     # this will not work cause:

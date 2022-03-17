@@ -4,7 +4,7 @@ Even though the circle had a method to resize the Circle decorators didnt allowe
 which was a bit annoying
 
 How we fix it:
-1)Replicate every single inteface in decorator but thats not really practical
+1)Replicate every single interface in decorator but that's not really practical
 2) :
 """
 

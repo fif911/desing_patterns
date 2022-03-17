@@ -1,7 +1,8 @@
 """
 Scenario: Scalar object can masquerade as a collection and what benefits this actually gives us
 
-You can think of an Iterable as a marker interface that prevents you from trying to iterate something and then catching the exception if an object is not iterable.
+You can think of an Iterable as a marker interface that prevents you from trying to iterate something and then
+catching the exception if an object is not iterable.
 """
 from abc import ABC
 from collections.abc import Iterable

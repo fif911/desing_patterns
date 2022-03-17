@@ -47,9 +47,9 @@ class CreatureModifier(ABC):
     def __init__(self, game, creature):
         self.creature = creature
         self.game = game
-        self.game.queries.append(self.handle)
+        self.game.queries.append(self.handle)  # add function to list of functions
 
-    def handle(self, sender, query):
+    def handle(self, sender, query: Query):
         # nothing to do in ABC modifier
         pass
 
