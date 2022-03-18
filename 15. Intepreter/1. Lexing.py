@@ -46,10 +46,7 @@ def lex(input):
     return result
 
 
-# ↑↑↑ lexing ↑↑↑
-
-
-def eval(input):
+def calc(input):
     tokens = lex(input)  # get tokens. Its lexings process
     print(' '.join(map(str, tokens)))
 
@@ -58,5 +55,4 @@ def eval(input):
 
 
 if __name__ == '__main__':
-    eval('(13+4)-(12+1)-(1132)-100')
-    # eval('100+100')
+    calc('(13+4)-(12+1)-(1132)-100')
