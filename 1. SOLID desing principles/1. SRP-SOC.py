@@ -1,3 +1,9 @@
+"""
+Also on SOLID with Python examples
+https://habr.com/ru/company/otus/blog/651753/
+"""
+
+
 # Single responsibility = Separation of concerns
 # You don't want to overload objects with too many responsibilities. Anti pattern - God Object.
 
@@ -45,7 +51,6 @@ j = Journal()
 j.add_entry('Hello!')
 j.add_entry('I ate a bug.')
 print(f'Journal entries:\n{j}')
-
 
 file = r'C:\temp\journal.txt'
 # serializing to a file and reading from it

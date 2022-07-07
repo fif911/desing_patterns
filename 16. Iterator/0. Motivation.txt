@@ -1,0 +1,3 @@
+How traversal of data structures happens and who makes it happen
+
+A object that facilitates the traversal of a data structure
