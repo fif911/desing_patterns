@@ -1,5 +1,5 @@
 # Liskov substitution principle
-# If you have some interface that takes some sort of base class you should be able to stick a derived (получений)
+# If you have some interface that takes some sort of base class you should be able to stick a derived (виведений)
 # class in there and everything should work
 # Если в кусок кода приходит базовый клас parrent то в этот же кусок кода без каких либо помех может прийти
 # любой его наследник
