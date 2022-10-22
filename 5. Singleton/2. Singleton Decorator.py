@@ -10,7 +10,7 @@ def singleton(class_):  # параметр декоратора это объэ�
 
     This approach prevents the whole initialize or double invocation(вызов) thing
     """
-    instances = {}  # list of unique class names
+    instances = {}  # list of unique class names TODO: Check why this dict is not deleted
 
     def get_instance(*args, **kwargs):
         print("Get instance called")
