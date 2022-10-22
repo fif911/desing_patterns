@@ -30,8 +30,8 @@ class LinkedList:
             # if some Node are already in the list - add to tail new node
             # self.tail.next_node = self.tail = Node(node_value, None)
             new_node = Node(node_value, None)
-            self.tail.next_node = new_node
-            self.tail = new_node
+            self.tail.next_node = new_node  # link current last node to new node
+            self.tail = new_node  # set new node as a last node
 
     def push(self, node_value):
         # inserts a new node at the beginning
@@ -97,7 +97,8 @@ class LinkedList:
             node = node.next_node
 
     def __str__(self):
-        return "Linked list"
+        return f"Linked list: {self.__repr__()}"
+
 
 def reverse(data_set):
     # 4234
@@ -123,9 +124,17 @@ if __name__ == '__main__':
     list.append(3)
     list.append(9)
     list.push(0)
-    print(list)
+    print(repr(list))
     list.reverse()
-    print(list)
+    print(repr(list))
+
+    all_nodes = []
+    for i in list:
+        all_nodes.append(str(i))
+    all_nodes.append('None')
+    print('->'.join(all_nodes))
+    del all_nodes
+
     print(f"Head: {list.head}")
     print(f"tail: {list.tail}")
     print(f"tail next node: {list.tail.next_node}")

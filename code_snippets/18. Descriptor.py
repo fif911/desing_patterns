@@ -33,6 +33,8 @@ def named_descriptors(klass):
 @named_descriptors
 class MyClass(object):
     x = MyDescriptor()
+
+
 # END named_descriptors
 
 
@@ -60,6 +62,8 @@ class GFG(object):
     print(g.name)
     """
     name = Descriptor()
+
+
 # validator desr example
 
 # class BankTransaction(object):
@@ -77,3 +81,8 @@ if __name__ == '__main__':
     print(g.name)  # for
     g.name = "Computer"  # ComputerforComputer
     print(g.name)
+    try:
+        g.name = 213
+    except TypeError as e:
+        print('g.name = 213')
+        print(f'TypeError: {e}')  # specified in __set__
