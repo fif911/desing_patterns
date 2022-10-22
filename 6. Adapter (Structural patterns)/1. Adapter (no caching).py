@@ -3,8 +3,10 @@ imagine we are given some pre packaged API (Point class and draw point func)
 
 Needed to use given API with you custom implementations that are differ from given API
 """
+from typing import List
 
 
+# ===================================== EXTERNAL API
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -15,11 +17,14 @@ def draw_point(p):
     print(".", end="")
 
 
+# ===================================== END EXTERNAL API
+
+
 # ^^ you are given this
 # vv
 
 class Line:
-    """ Represented as a two Points. """
+    """ Represented as two Points. """
 
     def __init__(self, start: Point, end: Point):
         self.start = start
@@ -27,9 +32,9 @@ class Line:
 
 
 class Rectangle(list):
-    """ Represented as a list of lines. """
+    """ Represented as a list of Lines. """
 
-    def __init__(self, x, y, width, height):
+    def __init__(self, x: int, y: int, width: int, height: int):
         super().__init__()
         self.append(Line(Point(x, y), Point(x + width, y)))
         self.append(Line(Point(x + width, y), Point(x + width, y + height)))
@@ -39,21 +44,25 @@ class Rectangle(list):
 
 class LineToPointAdapter(list):
     """List of Points"""
-    count = 0  # counter how many calls we are making
+    count = 0  # class counter how many total conversions we are making
 
-    def __init__(self, line):  # line = line that we want to adapt
+    def __init__(self, line: Line):  # line = line that we want to adapt
+        """Receive Line object and convert it the list of Points
+        Store result in self
+        """
         super().__init__()
-        self.count += 1
+        self.__class__.count += 1  # Save value as class variable
 
-        print(f'Generating points for line '
+        print(f'{self.count}: Generating points for line '
               f'[{line.start.x},{line.start.y}]→'
               f'[{line.end.x},{line.end.y}]')
 
         # calculate left,right,top,bottom coordinates of the line
         left = min(line.start.x, line.end.x)
+        bottom = min(line.start.y, line.end.y)
+
         right = max(line.start.x, line.end.x)
         top = min(line.start.y, line.end.y)
-        bottom = min(line.start.y, line.end.y)
 
         if right - left == 0:
             for y in range(top, bottom):
@@ -63,7 +72,7 @@ class LineToPointAdapter(list):
                 self.append(Point(x, top))
 
 
-def draw(rcs):
+def draw(rcs: List[Rectangle]):
     print("\n\n--- Drawing some stuff ---\n")
     for rc in rcs:
         for line in rc:
@@ -76,7 +85,7 @@ def draw(rcs):
 
             """
             pass
-            adapter = LineToPointAdapter(line)
+            adapter: List[Point] = LineToPointAdapter(line)
             for p in adapter:
                 draw_point(p)
 
@@ -88,3 +97,5 @@ if __name__ == '__main__':
     ]
     draw(rcs)
     draw(rcs)  # we are drawing same point one more time so that not super optimized
+
+    print(f"\nTotal lines adapted: {LineToPointAdapter.count}")

@@ -4,6 +4,7 @@ Cause we are regenerating every time a lot of Points to be able to use given API
 
 We will calculate the hash of particular line, and if the hash is same - than reuse that already calculated line
 """
+from pprint import pprint
 
 
 class Point:
@@ -47,14 +48,15 @@ class LineToPointAdapter:
         if self.h in self.cache:
             return
 
-        self.count += 1
+        self.__class__.count += 1
         print(f'{self.count}: Generating points for line ' +
               f'[{line.start.x},{line.start.y}]→[{line.end.x},{line.end.y}]')
 
         left = min(line.start.x, line.end.x)
+        bottom = min(line.start.y, line.end.y)
+
         right = max(line.start.x, line.end.x)
         top = min(line.start.y, line.end.y)
-        bottom = min(line.start.y, line.end.y)
 
         points = []
 
@@ -66,7 +68,8 @@ class LineToPointAdapter:
                 points.append(Point(x, top))
 
         # hash the calculated line
-        self.cache[self.h] = points
+        self.cache[self.h] = points  # we can save hash like this ONLY because hash is mutable
+        # if we were to save immutable object e.g. int: self.__class__.count
 
     def __iter__(self):
         """ We are making our object iterable !!! GENIUS !!!"""
@@ -98,3 +101,7 @@ if __name__ == '__main__':
     ]
     draw(rcs)
     draw(rcs)  # we are drawing same point one more time so that not super optimized
+
+    print(f"\nTotal lines adapted: {LineToPointAdapter.count}")
+    print(f"Total values hashed: {len(LineToPointAdapter.cache)}")
+    pprint(LineToPointAdapter.cache)
