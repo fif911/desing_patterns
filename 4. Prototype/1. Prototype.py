@@ -67,7 +67,7 @@ print(hex(id(jane.address)))  # 0x2a908939a60
 
 # jane = copy.copy(john)  # Shallow copy so any obj that is reference just gets copied as a reference
 # so jane refers to the same address as John
-# will change name correctly and address for both
+# will change name correctly BUT address for both
 jane.name = 'Jane'
 jane.address.street_address = '123B Road'
 print(john, jane, sep="\n")

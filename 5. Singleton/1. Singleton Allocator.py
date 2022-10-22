@@ -32,23 +32,34 @@ class Database:
         return cls._instance
 
     def __init__(self):
-        self.id = random.randint(1,101)
+        """
+        This approach works unless we have nothing in init
+        As init is called after new no matter what and you don't have any control of it
+        """
+        self.id = random.randint(1, 101)
         print('Generated an id of ', self.id)
         # id = random.randint(1, 101)
         # print('id =', id)
         # print("Loading a db from file")
-        pass
 
 
 database = Database()
 
 if __name__ == '__main__':
+    print(f"db({hex(id(database))}) id: {database.id}")
     d1 = Database()
+    print(f"db({hex(id(database))}) id: {database.id}")
     d2 = Database()  # this is the reference to the same object as d1 But THE MAIN PROBLEM
     print(d1 == d2)  # True But it's only ok assuming you have nothing in the initializer cause as soon as you
     # start sticking thins into init you gonna see problems
-    print(d1.id, d2.id)
+    print(f"db({hex(id(database))}) id: {database.id}")
+    print(f"db1 id: {d1.id}, db2 id: {d2.id}")
     print(database == d1)
+    print(database == d2)
+
+    print("\nHEX OF db1 and db2 are same as database")
+
+    [print(hex(id(db))) for db in [database, d1, d2]]
 
 """
  THE MAIN PROBLEM:

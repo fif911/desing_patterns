@@ -43,7 +43,7 @@ class EmployeeFactory:
         __ - static method that not should be used from outside"""
         result = copy.deepcopy(prototype)
         result.name = name
-        result.address.suite = suite
+        result.address.suite = suite # set value for internal object
         return result
 
     @staticmethod

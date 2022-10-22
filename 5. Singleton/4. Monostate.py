@@ -3,7 +3,7 @@ This implementation stands apart from canonical implementation - mono state impl
 We put all the state of the object into a static variable. But at the same time you allow people to create
 new objects thereby(тем самым) making new instances which all access the same things
 
-But this is not recommended approach. The better to use decorator or a class
+But this is not recommended approach. The better to use decorator or a metaclass
 """
 
 
