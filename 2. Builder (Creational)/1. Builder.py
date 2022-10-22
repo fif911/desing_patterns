@@ -53,7 +53,7 @@ class HtmlElement:
 
     @staticmethod
     def create(name):
-        """Create function. Breaks Open closed P a bit but as they are already realted as it's builder
+        """Create function. Breaks Open closed P a bit but as they are already related as it's builder
         it not problem to have such method"""
         return HtmlBuilder(name)
 
@@ -94,7 +94,7 @@ class HtmlBuilder:
 
 
 # builder = HtmlBuilder('ul')
-builder = HtmlElement.create('ul')
+builder: HtmlBuilder = HtmlElement.create('ul')
 # builder.add_child('li', 'hello')
 # builder.add_child('li', 'world')
 
