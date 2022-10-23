@@ -10,7 +10,6 @@
 # Lets split in different shapes and different renderers
 # the question how to make a connection between the shapes and renderers
 from abc import ABC, abstractmethod
-from typing import Type, TypeVar
 
 
 class Renderer(ABC):
@@ -57,7 +56,7 @@ class Shape(ABC):
 
 
 class Circle(Shape):
-    def __init__(self, renderer, radius):
+    def __init__(self, renderer, radius: int):
         super(Circle, self).__init__(renderer)
         self.radius = radius
 
