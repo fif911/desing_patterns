@@ -9,15 +9,21 @@
 
 # Lets split in different shapes and different renderers
 # the question how to make a connection between the shapes and renderers
-from abc import ABC
+from abc import ABC, abstractmethod
+from typing import Type, TypeVar
 
 
 class Renderer(ABC):
+    @abstractmethod
     def render_circle(self, radius):
         pass
 
+    @abstractmethod
     def render_square(self, side):
         pass
+
+
+# S = TypeVar('S', bound=Renderer)  # Can be any subtype of str
 
 
 class VectorRenderer(Renderer):
@@ -40,7 +46,8 @@ class RasterRenderer(Renderer):
 
 # now we need to do hierarchy of shapes
 class Shape(ABC):
-    def __init__(self, renderer):  # that we are taking renderer as a argument its the core of Bridge design pattern
+    def __init__(self, renderer: Renderer):
+        # that we are taking renderer as a argument its the core of Bridge design pattern
         # this is how we connect one hierarchy with another
         self.renderer = renderer
 
