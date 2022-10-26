@@ -2,7 +2,8 @@
 A mechanism for treating individual(scalar) objects and compositions of objects in a uniform manner
 
 Goal of composite DP - to treat individual components and groups of objects in a uniform fashion
-To provide identical interface over both aggregates of components as well as individual components
+
+!!!! To provide identical interface over both aggregates(sets) of components and individual components !!!
 
 Motivation:
 
