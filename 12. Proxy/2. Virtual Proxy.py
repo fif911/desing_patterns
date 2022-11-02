@@ -3,6 +3,7 @@ Proxy that appears to be an underlying fully initialized object but in fact its 
 its masquerading the underlying functionality
 
 """
+from typing import Optional
 
 
 class Bitmap:
@@ -16,12 +17,16 @@ class Bitmap:
 
 
 class LazyBitmap:
-    def __init__(self, filename):
+    """
+    This is a VIRTUAL proxy between Bitmap class and rest of the world
+    """
+
+    def __init__(self, filename: str):
         self.filename = filename
         self._bitmap = None
 
     def draw(self):
-        if not self._bitmap:
+        if not self._bitmap:  # Load actual image only when needed
             self._bitmap = Bitmap(self.filename)
         self._bitmap.draw()
 
@@ -38,6 +43,9 @@ if __name__ == '__main__':
     draw_image(bmp)
     print()
     draw_image(bmp)  # note that loading happens only once
+
+
+    # bmp = Bitmap("facepalm.jpg")
     # but the problem is here
     # if we comment draw_image(bmp)
     # we still loading the image. And this process can be expensive
