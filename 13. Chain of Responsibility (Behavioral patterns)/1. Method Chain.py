@@ -18,6 +18,8 @@ class Creature:
 # imagine as creature walk around it gets modifications to its abilities
 
 class CreatureModifier:
+    """Basic modifier"""
+
     def __init__(self, creature):
         self.creature = creature
         self.next_modifier = None  # store the next modifier in chain (you can have several modifiers)

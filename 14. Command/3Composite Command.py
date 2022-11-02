@@ -133,14 +133,16 @@ class CompositeBankAccountCommand(Command, list):
 
 class MoneyTransferCommand(CompositeBankAccountCommand):
     def __init__(self, from_acct, to_acct, amount):
-        super().__init__([
-            BankAccountCommand(from_acct,
-                               BankAccountCommand.Action.WITHDRAW,
-                               amount),
-            BankAccountCommand(to_acct,
-                               BankAccountCommand.Action.DEPOSIT,
-                               amount)
-        ])
+        super().__init__(
+            [
+                BankAccountCommand(from_acct,
+                                   BankAccountCommand.Action.WITHDRAW,
+                                   amount),
+                BankAccountCommand(to_acct,
+                                   BankAccountCommand.Action.DEPOSIT,
+                                   amount)
+            ]
+        )
 
     def invoke(self):
         ok = True  # flag that defines whether the previous command succeeded
