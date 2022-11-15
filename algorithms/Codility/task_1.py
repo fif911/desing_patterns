@@ -27,6 +27,8 @@ def profile(fnc):
     return inner
 
 
+# PERF_TOTAL_CHARS = 30_000
+
 test_set = [
     # ('abccbd', [0, 1, 2, 3, 4, 5], 2),
     # ('aabbcc', [1, 2, 1, 2, 1, 2], 3),
@@ -49,17 +51,20 @@ test_set = [
     # ('bnnaaaabba', [100, 2, 1, 5, 4, 3, 6, 12, 20, 100], 13 + 12),
 
     # FOR PERF:
-    ('nnaaaa' * 4000, [1, 1, 6, 5, 4, 3] * 4000, 13),
-    ('nnaaaa' + "b" * 10000, [1, 1, 6, 5, 4, 3] + [9] * 10000, 13),
+    ('nnaaaa' * 5000, [1, 1, 6, 5, 4, 3] * 5000, 13),  # total chars = 30k
+    # ('nnaaaa' + "b" * 29994, [1, 1, 6, 5, 4, 3] + [9] * 29994, 13), # IS THIS CASE TOO MANY min() would be called 29993
+    # times which would lead to bottleneck. It's easier to sort array, get min, find min and add sum of all those other
 
-    ('bnnaaaabba' * 1000, [100, 2, 1, 5, 4, 3, 6, 12, 20, 100] * 1000, 13 + 12),
+    ('bnnaaaabba' * 3000, [100, 2, 1, 5, 4, 3, 6, 12, 20, 100] * 3000, 13 + 12),
+    ('bnvaaaabba' * 3000, [100, 2, 1, 5, 4, 3, 6, 12, 20, 100] * 3000, 13 + 12),
+    ('aabbccddee' * 3000, [100, 2, 1, 5, 4, 3, 6, 12, 20, 100] * 3000, 13 + 12),
 
-    (
-        'bnnaaaabba' + 'abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc',
-        [100, 2, 1, 5, 4, 3, 6, 12, 20, 100] + [100] * 120, 13 + 12),
-    (
-        'bnnaaaabba' + 'abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcaaabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcbbabcabcabc',
-        [100, 2, 1, 5, 4, 3, 6, 12, 20, 100] + [100] * 120, 13 + 12),
+    # (
+    #     'bnnaaaabba' + 'abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc',
+    #     [100, 2, 1, 5, 4, 3, 6, 12, 20, 100] + [100] * 120, 13 + 12),
+    # (
+    #     'bnnaaaabba' + 'abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcaaabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcbbabcabcabc',
+    #     [100, 2, 1, 5, 4, 3, 6, 12, 20, 100] + [100] * 120, 13 + 12),
 ]
 
 
@@ -129,7 +134,7 @@ if __name__ == '__main__':
             # time_t = timeit.timeit('solution(t_input1, t_input2)', globals=globals(), number=NUMBER_OF_REPETITIONS)
             time_t = run_perf_test(t_input1, t_input2, NUMBER_OF_REPETITIONS)
             exec_time += time_t
-            print(f"This perf test run average: {time_t / NUMBER_OF_REPETITIONS}")
+            print(f"This perf test run average: {time_t / NUMBER_OF_REPETITIONS} for chars {len(t_input1)}")
             i += 1
         else:
             try:

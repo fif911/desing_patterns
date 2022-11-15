@@ -61,7 +61,7 @@ if __name__ == '__main__':
     res = timeit.timeit("ep.calculate('1');ep.calculate('1+xa');ep.calculate('1+2');ep.calculate('1+x')",
                         globals=globals(), number=100000)
 
-    print(res)  # 2.0573978
+    print(res)  # 2.0573978 or 1.7280469999999999
 
 # class FirstTestSuite(unittest.TestCase):
 #     @classmethod

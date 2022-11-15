@@ -87,7 +87,7 @@ class Variable:
 def parse(tokens: List[Token], vars: dict):
     # Lets assume than top level result should always be binary expression
     result = BinaryExpression()
-    have_lhs = False  # we need it to know whether we need to put it on left hand side or right side of a binary exp
+    have_lhs = False  # we need it to know whether we need to put it on left-hand side or right side of a binary exp
     i = 0
     while i < len(tokens):
         token = tokens[i]
@@ -130,12 +130,12 @@ class ExpressionProcessor:
         1+x if x in variables =2 should return 3
         """
         try:
-            tokens = lex(expression)
+            tokens: list[Token] = lex(expression)
         except ValueError:
             return 0
 
         try:
-            parsed = parse(tokens, self.variables)
+            parsed: BinaryExpression = parse(tokens, self.variables)
         except ValueError:
             return 0
 
@@ -163,4 +163,4 @@ if __name__ == '__main__':
     res = timeit.timeit("ep.calculate('1');ep.calculate('1+xa');ep.calculate('1+2');ep.calculate('1+x')",
                         globals=globals(), number=100000)
 
-    print(res)  # 1.5003857
+    print(res)  # 1.5003857 or 1.0534329999999998

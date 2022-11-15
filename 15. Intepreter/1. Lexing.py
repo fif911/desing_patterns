@@ -9,9 +9,9 @@ class Token:
         LPAREN = 3
         RPAREN = 4
 
-    def __init__(self, type, text):
-        self.type = type
-        self.text = text
+    def __init__(self, type: Type, text):
+        self.type: Token.Type = type
+        self.text: str = text
 
     def __str__(self):
         return f'`{self.text}`'
@@ -20,7 +20,7 @@ class Token:
 def lex(input):
     result = []
     i = 0
-    while i < len(input):
+    while i < len(input):  # Needed as it will allow to control incrementor (not possible with for loop + enumerate() )
 
         if input[i] == '+':
             result.append(Token(Token.Type.PLUS, '+'))

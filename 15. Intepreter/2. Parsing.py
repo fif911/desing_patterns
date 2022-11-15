@@ -129,5 +129,5 @@ if __name__ == '__main__':
     calc('(13+4)-(12+1)')
     calc('1+(3-4)')
 
-    # this won't work
+    # this won't work as we work only with 1 binary expression (and in case of parenthesis )
     calc('1+2+(3-4)')
