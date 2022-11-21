@@ -1,6 +1,6 @@
 # Observer
 
-Watching events
+*Watching events*
 
 #### Definition
 
