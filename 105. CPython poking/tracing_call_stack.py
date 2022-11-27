@@ -24,8 +24,8 @@ def trace(frame, event, args):
     print(f"{pad}----------------------------------")
     return trace
 
+if __name__ == '__main__':
+    sys.settrace(trace)
 
-sys.settrace(trace)
-
-# Run some code for a demo
-eval('"-".join([letter for letter in "hello"])')
+    # Run some code for a demo
+    eval('"-".join([letter for letter in "hello"])')
