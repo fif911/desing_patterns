@@ -1,6 +1,10 @@
 """
 Improving the Intrusive approach with
-Separate class for printing
+Separate class for printing (we extracted printing concerns (as SRP tolds us to do))
+
+This approach  reflective approach as in some programming languages checking of the type is a reflection operation
+
+There is a downside of this implementation: we need to modify ExpressionPrinter everytime we add new inheritors
 """
 from __future__ import annotations
 
@@ -37,6 +41,8 @@ class ExpressionPrinter:
     @staticmethod
     def print_printer(expression: AdditionExpression | DoubleExpression, buffer: List):
         # we don't know what type of expression we received, so we need to do type checking
+
+        # TODO: (downside) If we add new inheritor (e.g. SubtractionExpression), it will be ignored and not printed
         if isinstance(expression, DoubleExpression):
             buffer.append(str(expression.value))
         elif isinstance(expression, AdditionExpression):
