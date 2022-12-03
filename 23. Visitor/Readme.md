@@ -24,3 +24,27 @@ Note:
 (How to go to the paragraph and navigate to other elements in it).  
 This component should ignore explicit type checks and make use of duck typing.  
 
+- By using overloads your language starts to behave kind of like strongly typed languages
+- Decorator for visitor can to be custom build one, but also a multipledispatch.dispatch
+- By calling visit() we effectively traverse the whole structure
+
+### Tech implementation
+
+```python
+# For best function overloads use
+from multipledispatch import dispatch
+
+class Visitor:
+    
+    @dispatch(Value)
+    def visit(self, v):
+        ...
+
+    @dispatch(AdditionExpression)
+    def visit(self, ae: AdditionExpression):
+        ...
+    
+    @dispatch(MultiplicationExpression)
+    def visit(self, me: MultiplicationExpression):
+        ...
+```
