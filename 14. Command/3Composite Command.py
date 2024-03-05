@@ -116,9 +116,11 @@ class CompositeBankAccountCommand(Command, list):
     (that's composite DP)
     """
 
-    def __init__(self, items=[]):
+    def __init__(self, items=None):
         super().__init__()  # call the base class to init the whole thing
 
+        if items is None:
+            items = []
         for command in items:
             self.append(command)
 
